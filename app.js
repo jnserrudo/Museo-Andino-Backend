@@ -22,7 +22,6 @@ const ACCEPTED_ORIGINS = [
   "http://jnsix.com",
 ];
 
-
 // Configuración del middleware CORS
 app.use(
   cors({
@@ -40,10 +39,7 @@ app.use(
 
 //Como hostear react directo desde express? Asi -->
 //Primero le decimos a express que use todos los archivos del build de react asi:
-const staticPath = path.join(
-  dirnamex,
-  "../Museo-Andino-Guia-Interactiva/museo-andino-guia-interactiva/dist"
-);
+const staticPath = path.join(dirnamex, "../Museo-Andino-Guia-Interactiva/museo-andino-guia-interactiva/dist");
 console.log("Static Path: ", staticPath);
 
 app.use(express.static(staticPath));
@@ -51,6 +47,7 @@ app.use(express.static(staticPath));
 //Luego le decimos a express que sirva todo eso desde el home
 
 const front = (req, res) => {
+  console.log("ENTRO A front");
   const indexPath = path.join(staticPath, "index.html");
   console.log("Serving index.html from: ", indexPath);
   res.sendFile(indexPath, (err) => {
@@ -69,7 +66,7 @@ app.use(json());
 //app.use("/api", router);
 
 // Servir el frontend en la ruta raíz
-app.get("/", front);
+app.get("/museo", front);
 
 // Manejar todas las demás rutas para React
 
@@ -100,13 +97,12 @@ app.use((err, req, res, next) => {
 
 console.log(path.join(dirnamex, "uploads"));
 
-
 // Servir archivos estáticos
 //app.use("/uploads", express.static(path.join(dirnamex, "src", "uploads")));
 
-const PORT = process.env.PORT ?? 1234;
+const PORT = process.env.PORT ?? 2000;
 
 app.get("*", front);
 app.listen(PORT, () => {
-  console.log("servidor escuchando en el puerto  http://localhost:1234");
+  console.log("servidor escuchando en el puerto  http://localhost:2000");
 });
