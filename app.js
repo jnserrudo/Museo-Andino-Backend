@@ -37,6 +37,7 @@ app.use(
   })
 );
 
+// Proyecto 1: /museo
 //Como hostear react directo desde express? Asi -->
 //Primero le decimos a express que use todos los archivos del build de react asi:
 const staticPath = path.join(dirnamex, "../Museo-Andino-Guia-Interactiva/museo-andino-guia-interactiva/dist");
@@ -84,6 +85,22 @@ app.get('*', front); garantiza que todas las demás rutas también sirvan la apl
 React Router maneje la navegación.
 * 
 */
+
+
+
+// =====================
+// 🟣 Proyecto 2: /mra_guia_interactiva
+// =====================
+const staticPathMRA = path.join(dirnamex, "../Museo-Regional-Andino-Guia-Interactiva/dist");
+console.log("Static Path MRA: ", staticPathMRA);
+
+app.use("/mra_guia_interactiva", express.static(staticPathMRA));
+app.get("/mra_guia_interactiva*", (req, res) => {
+  res.sendFile(path.join(staticPathMRA, "index.html"));
+});
+
+//------------
+
 
 // Manejo de errores CORS
 app.use((err, req, res, next) => {
