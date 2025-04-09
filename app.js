@@ -90,13 +90,13 @@ React Router maneje la navegación.
 
 
 // =====================
-// 🟣 Proyecto 2: /mra_guia_interactiva
+// 🟣 Proyecto 2: /mra/guia_interactiva
 // =====================
 const staticPathMRA = path.join(dirnamex, "../Museo-Regional-Andino-Guia-Interactiva/dist");
 console.log("Static Path MRA: ", staticPathMRA);
 
-app.use("/mra_guia_interactiva", express.static(staticPathMRA));
-app.get("/mra_guia_interactiva*", (req, res) => {
+app.use("/mra/guia_interactiva", express.static(staticPathMRA));
+app.get("/mra/guia_interactiva*", (req, res) => {
   res.sendFile(path.join(staticPathMRA, "index.html"));
 });
 
@@ -119,6 +119,10 @@ console.log(path.join(dirnamex, "uploads"));
 //app.use("/uploads", express.static(path.join(dirnamex, "src", "uploads")));
 
 const PORT = process.env.PORT ?? 2000;
+
+
+app.get("*", front);
+
 
 app.listen(PORT, () => {
   console.log("servidor escuchando en el puerto  http://localhost:2000");
