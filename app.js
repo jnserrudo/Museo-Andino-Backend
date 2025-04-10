@@ -66,10 +66,12 @@ app.use(json());
 
 //app.use("/api", router);
 
-// Servir el frontend en la ruta raíz
-app.get("/museo", front);
+// Servir estáticos
+app.use("/museo", express.static(staticPath));
 
-app.get("*", front);
+// Rutas React
+app.get("/museo*", front);
+
 // Manejar todas las demás rutas para React
 
 /**
@@ -121,7 +123,7 @@ console.log(path.join(dirnamex, "uploads"));
 const PORT = process.env.PORT ?? 2000;
 
 
-app.get("*", front);
+//app.get("*", front);
 
 
 app.listen(PORT, () => {
