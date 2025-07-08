@@ -43,7 +43,7 @@ app.use(
 const staticPath = path.join(dirnamex, "../Museo-Andino-Guia-Interactiva/museo-andino-guia-interactiva/dist");
 console.log("Static Path: ", staticPath);
 
-app.use(express.static(staticPath));
+//app.use(express.static(staticPath)); SE COMENTO ESTA LINA PARA VER LO DEL PROXY VPS RENDER
 
 //Luego le decimos a express que sirva todo eso desde el home
 
